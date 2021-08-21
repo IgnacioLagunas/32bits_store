@@ -1,17 +1,23 @@
 <template>
   <nav>
     <div class="logo">
-      <h1>32<span>_Bits</span></h1>
+      <router-link class="link" :to="{ path: '/' }"
+        ><h1>32<span>_Bits</span></h1></router-link
+      >
     </div>
     <ul class="nav-links">
-      <router-link class="nav-link" :to="{ path: '/' }">Inicio</router-link>
-      <router-link class="nav-link" :to="{ path: '/busquedas' }"
+      <router-link class="nav-link link" :to="{ path: '/' }"
+        >Inicio</router-link
+      >
+      <router-link class="nav-link link" :to="{ path: '/busquedas' }"
         >Busquedas</router-link
       >
-      <router-link class="nav-link" :to="{ path: '/ventas' }"
+      <router-link class="nav-link link" :to="{ path: '/ventas' }"
         >Ventas</router-link
       >
-      <router-link class="nav-link" :to="{ path: '/total' }">Total</router-link>
+      <router-link class="nav-link link" :to="{ path: '/total' }"
+        >Total</router-link
+      >
     </ul>
   </nav>
 </template>
@@ -37,6 +43,13 @@
   .logo span {
     color: white;
     letter-spacing: 0.2rem;
+    font-weight: 400;
+  }
+  .logo h1 {
+    margin-bottom: 0;
+  }
+  .link {
+    text-decoration: none;
   }
   .nav-links {
     width: 350px;
@@ -46,9 +59,8 @@
     justify-content: space-between;
   }
   .nav-link {
-    text-decoration: none;
     color: white;
-    font-weight: bold;
+    font-weight: 400;
   }
   .nav-link:hover {
     color: #7469ca;

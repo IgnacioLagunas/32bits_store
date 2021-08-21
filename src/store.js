@@ -12,7 +12,7 @@ const store = new Vuex.Store({
         nombre: "Sekiro",
         stock: 100,
         precio: 30000,
-        color: "red",
+        color: "#ef476f",
         destacado: true,
       },
       {
@@ -20,7 +20,7 @@ const store = new Vuex.Store({
         nombre: "Fifa 21",
         stock: 100,
         precio: 25000,
-        color: "blue",
+        color: "#118ab2",
         destacado: false,
       },
       {
@@ -28,7 +28,7 @@ const store = new Vuex.Store({
         nombre: "Gears of War 4",
         stock: 100,
         precio: 15000,
-        color: "green",
+        color: "#06d6a0",
         destacado: true,
       },
       {
@@ -36,7 +36,7 @@ const store = new Vuex.Store({
         nombre: "Mario Tennis Aces",
         stock: 100,
         precio: 35000,
-        color: "yellow",
+        color: "#ffd166",
         destacado: false,
       },
       {
@@ -44,7 +44,7 @@ const store = new Vuex.Store({
         nombre: "Bloodborne",
         stock: 100,
         precio: 10000,
-        color: "blue",
+        color: "#118ab2",
         destacado: false,
       },
       {
@@ -52,12 +52,26 @@ const store = new Vuex.Store({
         nombre: "Forza Horizon 4",
         stock: 100,
         precio: 20000,
-        color: "red",
+        color: "#ef476f",
         destacado: true,
       },
     ],
   },
-  getters: {},
+  getters: {
+    cantidadDeJuegos(state) {
+      let juegosConStock = state.juegos.filter((juego) => {
+        return juego.stock > 0;
+      });
+      return juegosConStock.length;
+    },
+    totalStock(state) {
+      let total = 0;
+      state.juegos.forEach((juego) => {
+        total += juego.stock;
+      });
+      return total;
+    },
+  },
 
   mutations: {
     LOWER_STOCK: (state, index) => {
@@ -67,7 +81,13 @@ const store = new Vuex.Store({
       state.carrito.push(juego);
     },
     INCREASE_CART_QTTY: (state, index) => {
-      state.carrito[index].cantidad += 1;
+      state.carrito[index].stock += 1;
+    },
+    LOWER_CART_QTTY: (state, index) => {
+      state.carrito[index].stock -= 1;
+    },
+    REMOVE_PRODUCT_FROM_CART: (state, index) => {
+      state.carrito.splice(index, 1);
     },
   },
 
@@ -82,10 +102,10 @@ const store = new Vuex.Store({
             codigo: juego.codigo,
             nombre: juego.nombre,
             precio: juego.precio,
-            cantidad: 0,
+            stock: 1,
           };
-          context.commit("ADD_PRODUCT_TO_CART", gameToAdd);
           context.commit("LOWER_STOCK", index);
+          context.commit("ADD_PRODUCT_TO_CART", gameToAdd);
         } else {
           context.commit("INCREASE_CART_QTTY", foundInIndex);
           context.commit("LOWER_STOCK", index);
@@ -102,6 +122,13 @@ const store = new Vuex.Store({
       });
       console.log(found);
       return found;
+    },
+    borrarProducto(context, index) {
+      if (context.state.carrito[index].stock === 1) {
+        context.commit("REMOVE_PRODUCT_FROM_CART", index);
+      } else {
+        context.commit("LOWER_CART_QTTY", index);
+      }
     },
   },
 });
