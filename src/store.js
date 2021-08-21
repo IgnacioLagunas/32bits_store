@@ -71,6 +71,13 @@ const store = new Vuex.Store({
       });
       return total;
     },
+    totalPrice(state) {
+      let total = 0;
+      state.carrito.forEach((juego) => {
+        total += juego.precio * juego.stock;
+      });
+      return total;
+    },
   },
 
   mutations: {

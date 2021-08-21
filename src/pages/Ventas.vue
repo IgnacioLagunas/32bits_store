@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Ventas</h1>
-
+    <p>Total de juegos con stock: {{ $store.getters.cantidadDeJuegos }}</p>
     <GameList
       :list="$store.state.juegos"
       :sellingPoint="true"
@@ -14,6 +14,10 @@
       :shoppingCart="true"
       :colors="true"
     ></GameList>
+
+    <p v-if="!($store.getters.totalPrice === 0)">
+      Total: ${{ $store.getters.totalPrice }}
+    </p>
   </div>
 </template>
 

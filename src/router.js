@@ -22,9 +22,9 @@ export default new Router({
       component: () => import("./pages/Ventas.vue"),
     },
     {
-      path: "/total",
-      name: "Total",
-      component: () => import("./pages/Total.vue"),
+      path: "/404",
+      name: "404",
+      component: () => import("./pages/404.vue"),
     },
   ],
 });

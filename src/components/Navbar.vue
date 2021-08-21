@@ -15,7 +15,7 @@
       <router-link class="nav-link link" :to="{ path: '/ventas' }"
         >Ventas</router-link
       >
-      <router-link class="nav-link link" :to="{ path: '/total' }"
+      <router-link class="nav-link link" :to="{ path: '/404' }"
         >Total</router-link
       >
     </ul>

@@ -29,10 +29,9 @@
   * {
     margin: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
-    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
     font-family: "Roboto", sans-serif;
   }
+
   .container {
     width: 95%;
     margin: 0 auto;
@@ -40,5 +39,6 @@
   }
   h1 {
     margin-bottom: 2rem;
+    font-weight: 300;
   }
 </style>
