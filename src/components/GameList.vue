@@ -46,6 +46,11 @@
         this.$store.dispatch("borrarProducto", index);
       },
     },
+    computed: {
+      listLenght() {
+        return this.list.length;
+      },
+    },
   };
 </script>
 

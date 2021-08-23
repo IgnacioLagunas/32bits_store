@@ -6,6 +6,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     carrito: [],
+    juegoBuscado: {},
     juegos: [
       {
         codigo: "0001",
@@ -78,6 +79,11 @@ const store = new Vuex.Store({
       });
       return total;
     },
+    juegoPorCodigo(state, codigo) {
+      return state.juegos.find((juego) => {
+        juego.codigo === codigo;
+      });
+    },
   },
 
   mutations: {
@@ -136,6 +142,11 @@ const store = new Vuex.Store({
       } else {
         context.commit("LOWER_CART_QTTY", index);
       }
+    },
+    juegoPorCodigo(context, codigo) {
+      return state.juegos.find((juego) => {
+        juego.codigo === codigo;
+      });
     },
   },
 });
